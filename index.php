@@ -46,10 +46,22 @@
 </head>
 <body id="page1">
 <?php 
+/*
+// server config
 $db_uname = "khaolam"; // khaolam root
 $db_upass = "khaolam";//  1234
 $db_host = "localhost"; //
 $db_name = "khaolam"; //  kaolam
+*/
+
+
+// local config
+$db_uname = "root"; // khaolam 
+$db_upass = "1234";//  1234
+$db_host = "localhost"; //
+$db_name = "kaolam"; //  kaolam
+
+
 
 $link = mysql_connect($db_host, $db_uname, $db_upass);
 if (!$link) {
@@ -121,7 +133,8 @@ $new_array[] = $row;
 	//echo $row['c_pict']; 
 ?>
  <div class="photo">
-	<a href="#"><span></span><img src="picture/<?php echo $row['c_pict'];?>" alt="image" /></a><h4><?php echo $row['c_name'];?></h4>
+	<a href="#"><span></span><img src="picture/<?php echo $row['c_pict'];?>" alt="image" /></a><h4><?php echo $row['c_name'];?><br/>
+   	ฉายา/ชื่อเล่น : <?php echo $row['c_nick'];?></h4>
 </div>
 <?php }?>                        
 </div>
