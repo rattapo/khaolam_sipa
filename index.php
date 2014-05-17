@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title></title>
+    <title>Kholam</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
@@ -45,6 +45,30 @@
 	<![endif]-->
 </head>
 <body id="page1">
+<?php 
+$db_uname = "root"; // khaolam
+$db_upass = "1234";// khaolam
+$db_host = "localhost"; //
+$db_name = "kaolam"; // khaolam
+
+$link = mysql_connect($db_host, $db_uname, $db_upass);
+if (!$link) {
+    die('Not connected : ' . mysql_error());
+}
+
+// make foo the current db
+$db_selected = mysql_select_db($db_name, $link);
+if (!$db_selected) {
+    die ('Can\'t use foo : ' . mysql_error());
+}
+
+mysql_query("Set names 'utf8'");
+$query = "SELECT * FROM master_comment";
+//$result = mysql_query($link,"SELECT * FROM master_comment");
+$result = mysql_query($query);
+$new_array[] = $row;
+
+?>
 	<!--==============================header=================================-->
     <header>
 
@@ -90,24 +114,17 @@
                                         </div>
                                     </div>
                                     <div >
-                                      
-                                            <div class="photo">
-	<a href="#"><span></span><img src="images/adisorn.jpg" alt="image" /></a><h4>อดิศร พึ่งยา</h4>
+ <?php 
+ 	while ($row = mysql_fetch_array($result)) {
+	//echo $row['c_id'];
+	//echo $row['c_name'];
+	//echo $row['c_pict']; 
+?>
+ <div class="photo">
+	<a href="#"><span></span><img src="picture/<?php echo $row['c_pict'];?>" alt="image" /></a><h4><?php echo $row['c_name'];?></h4>
 </div>
-<div class="photo">
-	<a href="#"><span></span><img src="images/ekkarach.jpg" alt="image" /></a><h4>เอกราช เก่งทุกทาง</h4>
+<?php }?>                        
 </div>
-<div class="photo">
-	<a href="#"><span></span><img src="images/sathit.jpg" alt="image" /></a><h4>สาธิต กรีกุล</h4>
-</div>
-<div class="photo">
-	<a href="#"><span></span><img src="images/veerasak.jpg" alt="image" /></a><h4>วิระศักดิ์ นิลกาก</h4>
-</div>
-
-
-                                                   
-                                     
-                                    </div>
                                 </div>
                                 <div class="inner">
                                    
