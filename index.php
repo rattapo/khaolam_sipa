@@ -46,10 +46,10 @@
 </head>
 <body id="page1">
 <?php 
-$db_uname = "root"; // khaolam
-$db_upass = "1234";// khaolam
+$db_uname = "khaolam"; // khaolam root
+$db_upass = "khaolam";//  1234
 $db_host = "localhost"; //
-$db_name = "kaolam"; // khaolam
+$db_name = "khaolam"; //  kaolam
 
 $link = mysql_connect($db_host, $db_uname, $db_upass);
 if (!$link) {
