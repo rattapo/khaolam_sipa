@@ -46,13 +46,15 @@
 </head>
 <body id="page1">
 <?php 
+
+$c_id = $_GET['c_id'];
+//$c_id = 1;
 /*
 // server config
 $db_uname = "khaolam"; // khaolam root
 $db_upass = "khaolam";//  1234
 $db_host = "localhost"; //
 $db_name = "khaolam"; //  kaolam
-
 */
 
 // local config
@@ -75,12 +77,12 @@ if (!$db_selected) {
 }
 
 mysql_query("Set names 'utf8'");
-$query = "SELECT * FROM master_comment";
-//$result = mysql_query($link,"SELECT * FROM master_comment");
+$query = "SELECT * FROM master_comment WHERE c_id='$c_id'";
 $result = mysql_query($query);
-$new_array[] = $row;
 
 ?>
+
+
 	<!--==============================header=================================-->
     <header>
 
@@ -126,20 +128,53 @@ $new_array[] = $row;
                                         </div>
                                     </div>
                                     <div >
- <?php 
+ 
+<div class="col-1">
+<?php 
  	while ($row = mysql_fetch_array($result)) {
-	//echo $row['c_id'];
-	//echo $row['c_name'];
-	//echo $row['c_pict']; 
 ?>
  <div class="photo">
 	<a href="detail.php?c_id=<?php echo $row['c_id'];?>"><span></span><img src="picture/<?php echo $row['c_pict'];?>" alt="image" /></a><h4><?php echo $row['c_name'];?><br/>
    	ฉายา/ชื่อเล่น : <?php echo $row['c_nick'];?></h4>
-
 </div>
+<?php
+$query2 = "SELECT * FROM comment WHERE c_id='$c_id'";
+$result2 = mysql_query($query2);
+
+?>                       
+</div>
+<div class="col-2">
+<br/><br/>
+<?php 
+ 	while ($row2 = mysql_fetch_array($result2)) {
+?>
+	<?php echo $row2['u_name'];?> Comment ว่า : "<?php echo $row2['com_det'];?>"
+    <br/> date : <?php echo $row2['com_date'];?>
+    
+ 
+<?php }?>
+<br/><br/><br/>
+<?php
+$query3 = "SELECT * FROM vote WHERE c_id='$c_id'";
+$result3 = mysql_query($query3);
+
+$all_score = 0;
+$av_score = 0;
+$i_count = 0;
+while ($row3= mysql_fetch_array($result3)) {
+		$score = $row3['v_score'];
+		$all_score += $score;
+		$i_count++;
+ }
+ if($i_count != 0){
+	$av_score = $all_score/$i_count ;
+ }
+ ?>
+มีคนโหวตทั้งหมด : <?php echo $i_count;?><br/>
+คะแนนเฉลี่ย :  <?php echo $av_score;?>
 <?php }
-mysql_close($link);
-?>                        
+	mysql_close($link);
+?>
 </div>
                                 </div>
                                 <div class="inner">
