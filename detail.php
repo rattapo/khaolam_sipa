@@ -46,8 +46,8 @@
 </head>
 <body id="page1">
 <?php 
-$db_uname = "khaolam"; // khaolam root
-$db_upass = "khaolam";//  1234
+$db_uname = "root"; // khaolam root
+$db_upass = "1234";//  1234
 $db_host = "localhost"; //
 $db_name = "khaolam"; //  kaolam
 
@@ -60,13 +60,17 @@ if (!$link) {
 $db_selected = mysql_select_db($db_name, $link);
 if (!$db_selected) {
     die ('Can\'t use foo : ' . mysql_error());
+	
+
 }
 
 mysql_query("Set names 'utf8'");
-$query = "SELECT * FROM master_comment";
+$query = "SELECT * FROM master_comment where";
 //$result = mysql_query($link,"SELECT * FROM master_comment");
 $result = mysql_query($query);
 $new_array[] = $row;
+
+
 
 ?>
 	<!--==============================header=================================-->
@@ -115,15 +119,27 @@ $new_array[] = $row;
                                     </div>
                                     <div >
  <?php 
- 	while ($row = mysql_fetch_array($result)) {
+ 	$row = mysql_fetch_array($result) 
 	//echo $row['c_id'];
 	//echo $row['c_name'];
 	//echo $row['c_pict']; 
 ?>
+<div class="col-1">
  <div class="photo">
-	<a href="detail.php"><span></span><img src="picture/<?php echo $row['c_pict'];?>" alt="image" /></a><center><h4><?php echo $row['c_name'];?></h4></center>
+	<img src="picture/<? echo $_GET["a"];?>.jpg"><center><h4><? echo $_GET["a"];?></h4></center> 
+	</div>
+                       
 </div>
-<?php }?>                        
+<div class="col-2">
+ <?
+ echo $row['c_id'];
+echo $row['c_name'];
+
+ 
+ 
+ 
+ ?>
+                       
 </div>
                                 </div>
                                 <div class="inner">
