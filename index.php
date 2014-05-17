@@ -46,22 +46,22 @@
 </head>
 <body id="page1">
 <?php 
-/*
+
 // server config
 $db_uname = "khaolam"; // khaolam root
 $db_upass = "khaolam";//  1234
 $db_host = "localhost"; //
 $db_name = "khaolam"; //  kaolam
 
-*/
 
+/*
 // local config
 $db_uname = "root"; // khaolam 
 $db_upass = "1234";//  1234
 $db_host = "localhost"; //
 $db_name = "kaolam"; //  kaolam
 
-
+*/
 
 $link = mysql_connect($db_host, $db_uname, $db_upass);
 if (!$link) {
